@@ -1,0 +1,49 @@
+1.
+WITH MaxSale
+AS
+(
+    SELECT TOP 1 *
+    FROM SalesLT.SalesOrderHeader a
+    ORDER BY a.TotalDue DESC
+)
+SELECT * FROM MaxSale
+GO
+
+2.
+DECLARE @MaxSale as INT;
+SET @MaxSale = (
+            SELECT TOP 1 a.SalesOrderID
+            FROM SalesLT.SalesOrderHeader a
+            ORDER BY a.TotalDue DESC
+            )
+SELECT @MaxSale
+
+3.
+WITH DateSeries(d1, d2)
+AS (
+SELECT CAST('2012-01-01' AS DATE) as d1, EOMONTH(CAST('2012-01-01' AS DATE)) as d2
+UNION ALL
+SELECT DATEADD(mm, 1, d1), EOMONTH(DATEADD(mm,1,d2))
+FROM DateSeries
+WHERE d2<DATEADD(mm, -1, DATEADD(yy, 1, CAST('2012-01-01' AS DATE)))
+)
+select d.d1, d.d2,a.City, sum(h.TotalDue) AS 'Total Due'
+from DateSeries d , SalesLT.SalesOrderHeader h
+INNER JOIN SalesLT.Address a ON h.BillToAddressID = a.AddressID
+where h.OrderDate BETWEEN d.d1 and d.d2
+GROUP BY a.City, d.d1, d.d2
+ORDER BY a.City, d.d1, d.d2
+
+4.
+CREATE PROCEDURE SalesLT_527  
+     @DueDate_2 DATE, @DueDate_3 DATE
+ AS
+ BEGIN
+    SELECT a.ShipMethod, a.PurchaseOrderNumber, a.DueDate, a.TotalDue
+    FROM SalesLT.SalesOrderHeader a
+    WHERE TotalDue IN(SELECT max(b.TotalDue) FROM SalesLT.SalesOrderHeader b) and 
+	DueDate BETWEEN  @DueDate_2 and @DueDate_3
+    GROUP BY a.ShipMethod, a.PurchaseOrderNumber, a.DueDate, a.TotalDue
+ END
+ EXEC SalesLT_527 @DueDate_2 = '2000-01-01', @DueDate_3 = '2018-12-31';  
+GO 
