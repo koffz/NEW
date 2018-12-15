@@ -122,4 +122,4 @@
 
 Select dbo.Numb_word(20)
 
-3.
+3..
