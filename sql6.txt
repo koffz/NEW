@@ -1,0 +1,125 @@
+1.
+
+2.CREATE FUNCTION dbo.Numb_word
+	(
+		@dt int
+	)
+	RETURNS NVARCHAR(100)
+	AS
+	BEGIN
+	DECLARE @str NVARCHAR(100)
+	 
+	SELECT
+	@str=CASE @dt 
+	WHEN 1 THEN N'Один '
+	WHEN 2 THEN N'Два '
+	WHEN 3 THEN N'Три '
+	WHEN 4 THEN N'Чотири '
+	WHEN 5 THEN N'Пять '
+	WHEN 6 THEN N'Шість '
+	WHEN 7 THEN N'Сім '
+	WHEN 8 THEN N'Вісім '
+	WHEN 9 THEN N'Девять '
+	WHEN 10 THEN N'Десять '
+	WHEN 11 THEN N'Одинадцять '
+	WHEN 12 THEN N'Дванадцять '
+	WHEN 13 THEN N'Тринадцять '
+	WHEN 14 THEN N'Чотирнадцять '
+	WHEN 15 THEN N'Пятнадцять '
+	WHEN 16 THEN N'Шістнадцять'
+	WHEN 17 THEN N'Сімнадцять '
+	WHEN 18 THEN N'Вісімнадцять '
+	WHEN 19 THEN N'Девятнадцять '
+	WHEN 20 THEN N'Двадцять'
+	WHEN 21 THEN N'Двадцять один '
+	WHEN 22 THEN N'Двадцять два '
+	WHEN 23 THEN N'Двадцять три '
+	WHEN 24 THEN N'Двадцять чотири '
+	WHEN 25 THEN N'Двадцять пять '
+	WHEN 26 THEN N'Двадцять шість '
+	WHEN 27 THEN N'Двадцять сім '
+	WHEN 28 THEN N'Двадцять вісім '
+	WHEN 29 THEN N'Двадцять девять'
+	WHEN 30 THEN N'Тридцять '
+	WHEN 31 THEN N'Тридцять один '
+    WHEN 32 THEN N'Тридцять два '
+    WHEN 33 THEN N'Тридцять три '
+    WHEN 34 THEN N'Тридцять чотири '
+    WHEN 35 THEN N'Тридцять пять '
+    WHEN 36 THEN N'Тридцять шість  '
+    WHEN 37 THEN N'Тридцять сім '
+    WHEN 38 THEN N'Тридцять вісім '
+    WHEN 39 THEN N'Тридцять девять '
+    WHEN 40 THEN N'Сорок '
+    WHEN 41 THEN N'Сорок один'
+    WHEN 42 THEN N'Сорок два '
+    WHEN 43 THEN N'Сорок три '
+    WHEN 44 THEN N'Сорок чотири '
+    WHEN 45 THEN N'Сорок пять '
+    WHEN 46 THEN N'Сорок шість  '
+    WHEN 47 THEN N'Сорок сім '
+    WHEN 48 THEN N'Сорок вісім '
+    WHEN 49 THEN N'Сорок девять '
+    WHEN 50 THEN N'Пятдесят '
+    WHEN 51 THEN N'Пятдесят один '
+    WHEN 52 THEN N'Пятдесят два '
+    WHEN 53 THEN N'Пятдесят три '
+    WHEN 54 THEN N'Пятдесят чотири '
+    WHEN 55 THEN N'Пятдесят пять '
+    WHEN 56 THEN N'Пятдесят шість  '
+    WHEN 57 THEN N'Пятдесят сім '
+    WHEN 58 THEN N'Пятдесят вісім '
+    WHEN 59 THEN N'Пятдесят девять '
+    WHEN 60 THEN N'Шістдесят '
+    WHEN 61 THEN N'Шістдесят один '
+    WHEN 62 THEN N'Шістдесят два '
+    WHEN 63 THEN N'Шістдесят три '
+    WHEN 64 THEN N'Шістдесят чотири '
+    WHEN 65 THEN N'Шістдесят пять '
+    WHEN 66 THEN N'Шістдесят шість  '
+    WHEN 67 THEN N'Шістдесят сім '
+    WHEN 68 THEN N'Шістдесят вісім '
+    WHEN 69 THEN N'Шістдесят девять '
+    WHEN 70 THEN N'Сімдесят '
+    WHEN 71 THEN N'Сімдесят один '
+    WHEN 72 THEN N'Сімдесят два '
+    WHEN 73 THEN N'Сімдесят три '
+    WHEN 74 THEN N'Сімдесятчотири '
+    WHEN 75 THEN N'Сімдесят пять '
+    WHEN 76 THEN N'Сімдесят шість  '
+    WHEN 77 THEN N'Сімдесят сім '
+    WHEN 78 THEN N'Сімдесят вісім '
+    WHEN 79 THEN N'Сімдесят девять '
+    WHEN 80 THEN N'Вісімдесят '
+    WHEN 81 THEN N'Вісімдесят один '
+    WHEN 82 THEN N'Вісімдесят два '
+    WHEN 83 THEN N'Вісімдесят три '
+    WHEN 84 THEN N'Вісімдесят чотири '
+    WHEN 85 THEN N'Вісімдесят пять '
+    WHEN 86 THEN N'Вісімдесят шість  '
+    WHEN 87 THEN N'Вісімдесят сім '
+    WHEN 88 THEN N'Вісімдесят вісім '
+    WHEN 89 THEN N'Вісімдесят девять '
+    WHEN 90 THEN N'Девяносто '
+    WHEN 91 THEN N'Девяносто один '
+    WHEN 92 THEN N'Девяносто два '
+    WHEN 93 THEN N'Девяносто три '
+    WHEN 94 THEN N'Девяносто чотири '
+    WHEN 95 THEN N'Девяносто пять '
+    WHEN 96 THEN N'Девяносто шість  '
+    WHEN 97 THEN N'Девяносто сім '
+    WHEN 98 THEN N'Девяносто вісім '
+    WHEN 99 THEN N'Девяносто девять '
+    ELSE ' '
+	END	 
+	 
+	RETURN @str
+	 
+	END
+
+
+
+
+Select dbo.Numb_word(20)
+
+3..
